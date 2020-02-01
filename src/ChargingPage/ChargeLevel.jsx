@@ -41,7 +41,7 @@ function ChargeLevel ({ currentMileage, chooseOptions }) {
       <Grid container spacing={2} alignItems="center">
         <Grid item xs>
           <Slider
-            value={desiredMileage}
+            value={desiredMileage || currentMileage}
             onChange={handleSliderChange}
             aria-labelledby="charge-level-slider"
             valueLabelDisplay="auto"
@@ -54,7 +54,7 @@ function ChargeLevel ({ currentMileage, chooseOptions }) {
         <Grid item>
           <Input
             className={classes.input}
-            value={desiredMileage}
+            value={desiredMileage || currentMileage}
             margin="dense"
             onChange={handleInputChange}
             onBlur={handleBlur}

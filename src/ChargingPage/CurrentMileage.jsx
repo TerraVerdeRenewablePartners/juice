@@ -32,7 +32,7 @@ function CurrentMileage ({ mileage, setMileage }) {
         }}
         onChange={updateMileage}
         type="number"
-        value={mileage}
+        value={mileage || ''}
       />
       <MileageLabel>miles</MileageLabel>
     </div>
