@@ -37,6 +37,8 @@ def get_hourly_rate(request):
     baseline = baseline_chunk['PG&E Bundled'][:num_full_intervals].sum()
     baseline += baseline_chunk['PG&E Bundled'][
         num_full_intervals:num_full_intervals + 1].sum() * remainder
+    baseline /= num_intervals
+    baseline *= kwh_choice
 
     resp = {}
     for i in range(1, 25):
@@ -50,6 +52,8 @@ def get_hourly_rate(request):
         total = sorted_chunk['Total Energy Price'][:num_full_intervals].sum()
         total += sorted_chunk['Total Energy Price'][
             num_full_intervals:num_full_intervals + 1].sum() * remainder
+        total /= num_intervals
+        total *= kwh_choice
         resp[i] = {
             'total': total,
             'baseline': baseline,
