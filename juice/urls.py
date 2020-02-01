@@ -16,6 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from .views import get_charge_options, get_hourly_rate
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('get-options/', get_charge_options, name="get_options"),
+    path('get-hours/', get_hourly_rate, name="get_hours")
 ]
