@@ -89,7 +89,7 @@ function ChargingPage () {
 /** ============================ Helpers =================================== */
 function getDefaultMileage () {
   // TODO: actually do something?
-  return 105;
+  return null;
 }
 
 /** ============================ Exports =================================== */
