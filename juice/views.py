@@ -15,7 +15,7 @@ CHARGE_RATE_KW = 5.7
 def get_hourly_rate(request):
     pacific = pytz.timezone('US/Pacific')
     miles_choice = request.query_params.get('miles_choice', None)
-    now = datetime(2019, 2, 8, 21, tzinfo=pacific) # - timedelta(days=365)
+    now = timezone.now() - timedelta(days=365)
     miles_choice = float(miles_choice)
     kwh_choice = miles_choice / MILES_PER_KWH
     num_hours = kwh_choice / CHARGE_RATE_KW
