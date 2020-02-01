@@ -28,9 +28,8 @@ const useStyles = makeStyles((theme) =>
 );
 
 /** ============================ Components ================================ */
-function ChargeLevel ({ currentMileage, chooseOptions }) {
+function ChargeLevel ({ currentMileage, desiredMileage, setDesiredMileage }) {
   const classes = useStyles();
-  const [desiredMileage, setDesired] = useState(currentMileage);
   const totalMileage = Number(getItem.capacity());
   
   return (
@@ -51,6 +50,7 @@ function ChargeLevel ({ currentMileage, chooseOptions }) {
             max={totalMileage}
           />
         </Grid>
+
         <Grid item>
           <Input
             className={classes.input}
@@ -72,18 +72,18 @@ function ChargeLevel ({ currentMileage, chooseOptions }) {
   );
   
   function handleSliderChange (event, newValue) {
-    setDesired(newValue);
+    setDesiredMileage(newValue);
   }
   
   function handleInputChange (event) {
-    setDesired(event.target.value === '' ? '' : Number(event.target.value));
+    setDesiredMileage(event.target.value === '' ? '' : Number(event.target.value));
   }
   
   function handleBlur () {
-    if (desiredMileage < 0) {
-      setDesired(0);
+    if (desiredMileage < currentMileage) {
+      setDesiredMileage(0);
     } else if (desiredMileage > totalMileage) {
-      setDesired(totalMileage);
+      setDesiredMileage(totalMileage);
     }
   }
   
