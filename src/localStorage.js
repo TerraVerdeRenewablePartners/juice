@@ -9,6 +9,7 @@ import entries from 'lodash/entries';
  */
 
 const storage = {};
+const storageKeys = ['hasOnboarded', 'capacity', 'saId', 'vin'];
 
 // Feature detection for `localStorage`
 const hasLocalStorage = (() => {
@@ -52,3 +53,9 @@ export const removeItem = hasLocalStorage
 export const hasItem = hasLocalStorage
     ? key => key in localStorage
     : key => key in storage;
+
+// Shorthand for fetching the recognized keys
+storageKeys.forEach((key) => {
+    getItem[key] = () => getItem(key);
+    hasItem[key] = () => hasItem(key);
+});

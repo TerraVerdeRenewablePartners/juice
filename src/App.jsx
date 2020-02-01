@@ -7,7 +7,7 @@ import './App.css';
 
 function App() {
   // Check if the user has set their initial info
-  const hasOnboarded = hasItem('hasOnboarded');
+  const hasOnboarded = hasItem.hasOnboarded();
   const [showOnboarding, setShowOnboarding] = useState(!hasOnboarded);
   
   return (
