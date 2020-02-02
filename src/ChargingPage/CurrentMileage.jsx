@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
@@ -21,12 +21,14 @@ const useStyles = makeStyles((theme) =>
 const MileageLabel = props => <Typography variant="h6">{props.children}</Typography>;
 function CurrentMileage ({ mileage, setMileage }) {
   const classes = useStyles();
+  const [errorState, setErrorState] = useState(null);
   
   return (
     <div className={classes.wrapper}>
-      <MileageLabel>Current mileage:</MileageLabel>
+      <MileageLabel>Current charge:</MileageLabel>
       <TextField
         className={classes.input}
+        error={!!errorState}
         InputLabelProps={{
           shrink: true,
         }}
@@ -39,7 +41,9 @@ function CurrentMileage ({ mileage, setMileage }) {
   );
   
   function updateMileage (event) {
-    setMileage(Number(event.target.value));
+    const value = Number(event.target.value);
+    setErrorState(value <= 0);
+    setMileage(value);
   }
 }
 

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import range from 'lodash/range';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -31,6 +31,7 @@ const useStyles = makeStyles((theme) =>
 function ChargeLevel ({ currentMileage, desiredMileage, setDesiredMileage }) {
   const classes = useStyles();
   const totalMileage = Number(getItem.capacity());
+  const [error, setError] = useState(false);
   
   return (
     <div>
@@ -54,10 +55,10 @@ function ChargeLevel ({ currentMileage, desiredMileage, setDesiredMileage }) {
         <Grid item>
           <Input
             className={classes.input}
+            error={error}
             value={desiredMileage || currentMileage}
             margin="dense"
             onChange={handleInputChange}
-            onBlur={handleBlur}
             inputProps={{
               step: 10,
               min: 0,
@@ -76,15 +77,15 @@ function ChargeLevel ({ currentMileage, desiredMileage, setDesiredMileage }) {
   }
   
   function handleInputChange (event) {
-    setDesiredMileage(event.target.value === '' ? '' : Number(event.target.value));
-  }
-  
-  function handleBlur () {
-    if (desiredMileage < currentMileage) {
-      setDesiredMileage(0);
-    } else if (desiredMileage > totalMileage) {
-      setDesiredMileage(totalMileage);
+    const strValue = event.target.value;
+    if (strValue === '') {
+      setDesiredMileage('');
+      return;
     }
+    
+    const value = Number(strValue);
+    setError(value < currentMileage);
+    setDesiredMileage(value);
   }
   
   /**

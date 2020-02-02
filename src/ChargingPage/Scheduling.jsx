@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 
 
 /** ============================ Components ================================ */
-function Scheduling ({ minChargeLength, schedule, setSchedule }) {
+function Scheduling ({ atWork, minChargeLength, schedule, setSchedule }) {
   return (
     <div>
       <Typography id="charge-level-slider" gutterBottom>
@@ -33,7 +33,21 @@ function Scheduling ({ minChargeLength, schedule, setSchedule }) {
       return;
     }
     
-    setSchedule(newSchedule);
+    // If we're configuring the work schedule, both values must move
+    if (atWork) {
+      const [oldStart, oldEnd] = schedule;
+      const startChanged = oldStart !== newStart;
+      const change = startChanged
+        ? newStart - oldStart
+        : newEnd - oldEnd;
+
+      setSchedule([
+        startChanged ? newStart : oldStart + change,
+        startChanged ? oldEnd + change : newEnd,
+      ]);
+    } else {
+      setSchedule(newSchedule);
+    }
   }
   
   function getMarks () {
