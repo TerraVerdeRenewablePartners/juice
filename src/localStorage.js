@@ -9,7 +9,7 @@ import entries from 'lodash/entries';
  */
 
 const storage = {};
-const storageKeys = ['hasOnboarded', 'capacity', 'saId', 'vin'];
+const storageKeys = ['hasOnboarded', 'capacity', 'vin'];
 
 // Feature detection for `localStorage`
 const hasLocalStorage = (() => {

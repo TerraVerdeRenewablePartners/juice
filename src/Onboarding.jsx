@@ -38,7 +38,6 @@ const useStyles = makeStyles((theme) =>
 function Onboarding ({ submit }) {
   const classes = useStyles();
   const [vin, setVin] = useState('');
-  const [saId, setSaId] = useState('');
   const [capacity, setCapacity] = useState(null);
 
   return (
@@ -95,16 +94,12 @@ function Onboarding ({ submit }) {
     setVin(event.target.value);
   }
   
-  function handleSaIdChange (event) {
-    setSaId(event.target.value);
-  }
-  
   function handleCapacityChange (event) {
     setCapacity(event.target.value);
   }
   
   function submitData () {
-      submit({ capacity, saId, vin });
+      submit({ capacity, vin });
   }
 }
 
