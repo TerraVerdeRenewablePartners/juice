@@ -10,6 +10,13 @@ import Typography from '@material-ui/core/Typography';
 import LeafIcon from './LeafIcon';
 
 
+const tooltipText = `
+  The clean energy rating refers to the amount of renewable energy that will be used to charge
+  your vehicle. A rating of 5 leaves means 100% of the electricity to charge your vehicle is coming
+  from renewable energy. A rating of 0 leaves means none of the electricity to charge your vehicle
+  is coming from renewable energy. (edited)
+`;
+
 /** ============================ Styles ==================================== */
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -54,7 +61,7 @@ function CostFunctions ({ prices, scheduledEnd }) {
       
       <div>
         <div>
-          <Tooltip title="Add" placement="top">
+          <Tooltip title={tooltipText} placement="top">
             <Typography variant="subtitle1">Clean Energy Rating</Typography>
           </Tooltip>
         </div>
