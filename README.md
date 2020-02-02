@@ -1,5 +1,32 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Running the application
+Install node modules:
+
+```bash
+$ npm install
+```
+
+Create a python virtual environment and install dependencies
+
+```bash
+$ python -m venv <env_name>
+$ source <env_name>/bin/activate
+(<env_name>)$ pip install -r requirements.txt 
+```
+
+Run migrations
+
+```bash
+(<env_name>)$ python manage.py migrate
+```
+
+Run the servers
+
+```bash
+(<env_name>)$ python manage.py runserver & npm run start;
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
