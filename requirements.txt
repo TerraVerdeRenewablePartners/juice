@@ -1,6 +1,6 @@
 Django==3.0.3
 django-extensions==2.2.6
-ipython==7.12.0
+ipython==7.16.3
 djangorestframework==3.11.0
 pandas==1.0.0
 django-cors-headers==3.2.1
